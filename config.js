@@ -1,5 +1,4 @@
 var config = [
-  {"frontpage": [
-    {"annotation": "Frontpage flow A, offset 0, limit 10, nq 23"}
-  ]}
+  {"element": "frontpage", "text": "Some long text describing this element"},
+  {"element": "list", "text": "Show 5 items in this list"}
 ];

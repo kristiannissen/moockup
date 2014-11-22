@@ -5,6 +5,7 @@
    * #TODO: -simple markup i JSON data-
    * #TODO: mulighed for at tilføje data via public metode eller decorator
    * #TODO: Annotation eller konfigurations data i json
+   * #TODO: Add cache to reduce requests to placehold.it
    * 
    **/
   var pluginName = "mookup",
@@ -21,6 +22,7 @@
     this.options = $.extend( {}, defaults, options );
     this._defaults = defaults;
     this._name = pluginName;
+
     // Call init
     this.init();
   }
@@ -30,11 +32,34 @@
       this.options.items = parseInt(this.element.attr('data-items'));
       this.options.template = this.element.attr('data-template');
       this.options.ratio = this.element.attr('data-image-ratio') ? this.element.attr('data-image-ratio') : "16:9";
-      
+
+      var annotation = this.element.attr('data-annotation') ? this.element.attr('data-annotation') : null;
       var fixtures = this.prepareFixtures( this.options.fixtures, this.element );
       var annotations = this.options.annotations;
 
       this.render( this.element, this.getTemplate( this.options.templates, this.options.template ), fixtures.slice(0, this.options.items));
+
+      if (annotation) {
+        var annon = _.where(this.options.annotations, {"element": annotation});
+        
+        $('<div/>').attr('id', annotation)
+          .css({position: 'absolute', background: 'rgba(0, 0, 0, 1)', color: 'rgba(255, 255, 255, 1)', padding: '1rem'})
+          .hide()
+          .addClass('tooltip')
+          .prependTo( this.element );
+        
+        $('#' + annotation).html(_.first(annon).text);
+
+        var self = this.element;
+
+        self.mouseenter(function (evnt) {
+          $('.tooltip', self).show();
+        })
+        .mouseleave(function () {
+          $('.tooltip', self).hide();
+        });
+      }
+
     },
     render: function ( element, template, fixtures ) {
       var converter = new Markdown.Converter();
@@ -49,7 +74,6 @@
       element.html(markup.trim());
     },
     getRatio: function () {
-      // #FIXME: Error handling
       var ratio = this.options.ratio.split(":");
       return [parseInt(_.first(ratio)), parseInt(_.last(ratio))];
     },
@@ -61,16 +85,13 @@
     prepareFixtures: function ( data, element ) {
       var rands = _.shuffle(_.range(Math.floor(Math.random() * data.length))), 
         ratio = [element.width(), Math.round((element.width() / _.first(this.getRatio())) * _.last(this.getRatio()))],
-        fixtures = data;
-        
-      _.each( rands, function (indx) {
-        var item = fixtures[indx];
-        item.image = 'http://placehold.it/'+ _.first(ratio) +'x'+ _.last(ratio);
-        
-        fixtures[indx] = item;
+        image = 'http://placehold.it/' + _.first(ratio) + 'x' + _.last(ratio);
+
+      _.each(data, function (item, indx) {
+        data[indx].image = image;
       });
-      
-      return fixtures;
+
+      return _.shuffle(data);
     }
   };
   
@@ -88,5 +109,7 @@
  * Handlebar helpers
  */
 Handlebars.registerHelper('teaser', function (options) {
-  return 'hello kitty';
+  return new Handlebars.SafeString(
+    '<span>' + options.fn(this).replace(/<(?:.|\n)*?>/gm, '').substring(0, 25) + '...' + '</span>'
+  );
 });
