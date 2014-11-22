@@ -1,0 +1,6 @@
+{"ts":1371497195234,"silentsave":true,"restoring":false,"patch":[[]],"length":0}
+{"contributors":[],"silentsave":false,"ts":1371497172367,"patch":[[{"diffs":[[1,"var config = {\n  \n};"]],"start1":0,"start2":0,"length1":0,"length2":20}]],"length":20,"saved":false}
+{"ts":1371497195715,"patch":[[{"diffs":[[0,"g = "],[-1,"{"],[1,"["],[0,"\n  \n"],[-1,"}"],[1,"]"],[0,";"]],"start1":9,"start2":9,"length1":11,"length2":11}]],"length":20,"saved":false}
+{"ts":1371497347088,"patch":[[{"diffs":[[0,"g = [\n  "],[1,"{\"frontpage\": [\n    \n  ]}"],[0,"\n];"]],"start1":9,"start2":9,"length1":11,"length2":36}]],"length":45,"saved":false}
+{"ts":1371497446015,"patch":[[{"diffs":[[0,": [\n    "],[1,"\"annotation\": \"Frontpage flow A, offset 0, limit 10, nq 23\""],[0,"\n  ]}\n];"]],"start1":29,"start2":29,"length1":16,"length2":75}]],"length":104,"saved":false}
+{"ts":1371497571843,"patch":[[{"diffs":[[0,": [\n    "],[1,"{"],[0,"\"annotat"]],"start1":29,"start2":29,"length1":16,"length2":17},{"diffs":[[0,", nq 23\""],[1,"}"],[0,"\n  ]}\n];"]],"start1":89,"start2":89,"length1":16,"length2":17}]],"length":106,"saved":false}

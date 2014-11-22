@@ -1,0 +1,9 @@
+<script id="tmpl-teaser" type="text/x-handlebars-template">
+  {{#each items}}
+    {{#if image}}
+      <img src="{{image}}">
+    {{/if}}
+    <h3>{{title}}</h3>
+    {{{body}}}
+  {{/each}}
+</script>
