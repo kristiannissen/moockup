@@ -49,7 +49,7 @@
       element.html(markup.trim());
     },
     getRatio: function () {
-      // FIXME: Error handling
+      // #FIXME: Error handling
       var ratio = this.options.ratio.split(":");
       return [parseInt(_.first(ratio)), parseInt(_.last(ratio))];
     },
@@ -83,3 +83,10 @@
   }
   
 })( jQuery, window, document );
+
+/**
+ * Handlebar helpers
+ */
+Handlebars.registerHelper('teaser', function (options) {
+  return 'hello kitty';
+});
