@@ -1,10 +1,10 @@
 /* jQuery Plugin */
 ;(function ( $, window, document, undefined ) {
   /**
-   * TODO: mulighed for at angive billed ration
-   * TODO: -simple markup i JSON data-
-   * TODO: mulighed for at tilføje data via public metode eller decorator
-   * TODO: Annotation eller konfigurations data i json
+   * #TODO: mulighed for at angive billed ration
+   * #TODO: -simple markup i JSON data-
+   * #TODO: mulighed for at tilføje data via public metode eller decorator
+   * #TODO: Annotation eller konfigurations data i json
    * 
    **/
   var pluginName = "mookup",
