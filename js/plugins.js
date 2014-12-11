@@ -41,16 +41,16 @@
 
       if (annotation) {
         var annon = _.where(this.options.annotations, {"element": annotation});
-        
+
         $('<div/>').attr('id', annotation)
           .css({position: 'absolute', background: 'rgba(0, 0, 0, 1)', color: 'rgba(255, 255, 255, 1)', padding: '1rem'})
           .hide()
           .addClass('tooltip')
           .prependTo( this.element );
         
-        $('#' + annotation).html(_.first(annon).text);
-
         var self = this.element;
+
+        $('#' + annotation).html(_.first(annon).text);
 
         self.mouseenter(function (evnt) {
           $('.tooltip', self).show();
@@ -63,11 +63,11 @@
     },
     render: function ( element, template, fixtures ) {
       var converter = new Markdown.Converter();
-      
+
       _.each(fixtures, function(item) {
         item.body = converter.makeHtml(item.body);
       });
-      
+
       var template = Handlebars.compile(template);
       var markup = template({items: fixtures});
 
@@ -82,6 +82,7 @@
       
       return markup.html();
     },
+    // FIXME: rands is no longer used, images are managed in templates
     prepareFixtures: function ( data, element ) {
       var rands = _.shuffle(_.range(Math.floor(Math.random() * data.length))), 
         ratio = [element.width(), Math.round((element.width() / _.first(this.getRatio())) * _.last(this.getRatio()))],
@@ -104,12 +105,3 @@
   }
   
 })( jQuery, window, document );
-
-/**
- * Handlebar helpers
- */
-Handlebars.registerHelper('teaser', function (options) {
-  return new Handlebars.SafeString(
-    '<span>' + options.fn(this).replace(/<(?:.|\n)*?>/gm, '').substring(0, 25) + '...' + '</span>'
-  );
-});
