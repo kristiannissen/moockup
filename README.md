@@ -34,7 +34,7 @@ In order to show as realistic data as possible, you can make use of Markdown for
 All you have to do in order to have Moock Up generate data for you is to add a few simple HTML 5 data-* attributes.
 
 Example
- <div data-items="1" data-template="tmpl-teaser" data-image-ratio="4:3"></div>
+<div data-items="1" data-template="tmpl-teaser" data-image-ratio="4:3"></div>
 
 - data-items
 - data-template
@@ -42,11 +42,14 @@ Example
 - data-annotation (experimental)
 
 _data-items_
+
 Using the data-item attribute tells Moock Up the number of items you want to show. Say you have a design where a list containing 3 links. You can have Moock Up generate 3 items for you simply by adding data-items="3" in a say div tag.
 
 _data-template_
 Is used to tell Moock Up what Handlebar template to use when displaying the items you need. You can add dummy imates using http://placehold.it 
 
+
 _data-image-ratio_
+
 By default Moock Up used a 16:9 ratio for images, you can change this using the data-image-ratio attribute and simply specify 4:3 as the ratio.
 Moock Up automatically creates images using http://placehold.it fitting into the required container.
